@@ -7,6 +7,9 @@ import TodoForm from "./components/TodoForm";
 import PostList from "./components/PostList";
 import Pagination from "./components/Pagination";
 import PostFilterForm from "./components/PostFilterForm";
+import Clock from "./components/Clock";
+
+
 function App() {
   //Set State
   const [todoList , setTodoList] = useState([
@@ -26,6 +29,7 @@ function App() {
     _page:1,
     title_like: '',
   })
+  const [showClock, setShowClock] = useState(true);
 
   //Demo use effect Post List
   useEffect(() => {
@@ -88,6 +92,7 @@ function App() {
       title_like: newFilter.searchTerm,
     })
   }
+  
   return (
     <div className="App">
       <ColorBox />
@@ -100,6 +105,9 @@ function App() {
         pagination={pagination}
         onPageChange={handlePageChange}
       />
+
+      {showClock && <Clock/>}
+      <button onClick={()=> setShowClock(!showClock)}>Hide Clock</button>
     </div>
   );
 }
