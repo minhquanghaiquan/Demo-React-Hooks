@@ -5,8 +5,8 @@ import ColorBox from "./components/ColorBox";
 import TodoList from "./components/TodoList";
 import TodoForm from "./components/TodoForm";
 import PostList from "./components/PostList";
-import Pagination from "./components/Pagination/inde";
-
+import Pagination from "./components/Pagination";
+import PostFilterForm from "./components/PostFilterForm";
 function App() {
   //Set State
   const [todoList , setTodoList] = useState([
@@ -24,6 +24,7 @@ function App() {
   const [filter , setFilter] = useState({
     _limit: 10,
     _page:1,
+    title_like: '',
   })
 
   //Demo use effect Post List
@@ -77,11 +78,23 @@ function App() {
     })
   }
 
+  //Demo search
+
+  function handleFilterChange(newFilter) {
+    console.log(newFilter);
+    setFilter({
+      ...filter,
+      _page:1,
+      title_like: newFilter.searchTerm,
+    })
+  }
   return (
     <div className="App">
       <ColorBox />
       <TodoForm onSubmit={handleTodoFormSubmit}/>
       <TodoList todos={todoList} onTodoClick={handleTodoLick}/>
+      
+      <PostFilterForm onSubmit={handleFilterChange} />
       <PostList posts={postList}/>
       <Pagination
         pagination={pagination}
