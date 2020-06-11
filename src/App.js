@@ -8,6 +8,7 @@ import PostList from "./components/PostList";
 import Pagination from "./components/Pagination";
 import PostFilterForm from "./components/PostFilterForm";
 import Clock from "./components/Clock";
+import MagicBox from "./components/MagicBox";
 
 
 function App() {
@@ -108,6 +109,8 @@ function App() {
 
       {showClock && <Clock/>}
       <button onClick={()=> setShowClock(!showClock)}>Hide Clock</button>
+
+      <MagicBox/>
     </div>
   );
 }
